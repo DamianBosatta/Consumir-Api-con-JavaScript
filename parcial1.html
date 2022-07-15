@@ -1,0 +1,136 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+
+      
+  </head>
+  <body>
+    <script>
+       
+       
+       
+        function DevolverListado(url) {
+          return new Promise (function(resolve, reject){
+      var request = new XMLHttpRequest();
+      request.open('GET', url);
+      request.responseType = 'json';
+      request.onload=function(){
+         if(request.status== 200){
+             resolve(request.response);
+      
+         }
+         else{
+             reject(Error('No se pudo cargar la imagen' + request.statusText));
+      
+         }
+      
+      }
+      request.onerror=function(){
+         reject(Error('Lo sentimos, ocurrio un error'));
+      }
+      request.send();
+      });
+       }
+      
+      
+      
+      
+      
+      DevolverListado('https://aabb-181-230-219-190.ngrok.io/student/getAll')
+      .then((response)=>{
+    response.forEach(element => {
+        var body = document.querySelector('tbody');
+        var row = body.insertRow()
+        var cell1 = row.insertCell()
+        cell1.innerHTML=element.id
+        var cell1 = row.insertCell()
+        cell1.innerHTML=element.dni
+        var cell1 = row.insertCell()
+        cell1.innerHTML=element.lastName
+
+    })
+      
+      })
+      .catch((reason)=> {
+         console.log(Error(reason));
+      })
+      </script>
+      <div class="container">
+             <div class="row mt-3">
+                    <div class = "col">
+                      <h2> Lista de datos</h2>
+                      <div class="my-3">
+                          <table>
+                                               <thead>
+                                                  <tr>
+                                                      <th scope="col" > ID  </th>
+                                                      
+                                                      <th scope="col" > DNI </th>
+                                                      
+                                                      <th scope="col" > APELLIDO  </th>
+                                                     
+                                                      <th scope="col" > NOMBRE  </th>
+                                                     
+                                                      <th scope="col" > EMAIL </th>
+                                                     
+                                                      <th scope="col" > COHORT </th>
+                                                     
+                                                      <th scope="col" > STATUS</th>
+                                                      
+                                                      <th scope="col" > GENERO</th>
+                                                     
+                                                      <th scope="col" > DIRECCION</th>
+                                                     
+                                                      <th scope="col" > TELEFONO  </th>
+  
+                                                                                   </tr>
+  
+                                                                          </thead>
+                                                                      <tbody>
+  
+                                                                      </tbody>
+  
+                                                           </table>
+                      
+                                      </div>            
+                  
+                             </div >
+  
+                      </div>
+  
+  
+            </div>
+  </div>
+  </body>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </html>
